@@ -9,6 +9,12 @@
 (for_range_loop 
   (_)? @loop.inner) @loop.outer
 
+(lambda_expression) @function.outer
+
+(lambda_expression
+  body: (compound_statement . "{" . (_) @_start @_end (_)? @_end . "}"
+ (#make-range! "function.inner" @_start @_end)))
+
 (template_declaration
   (function_definition) @function.outer) @function.outer.start
 
