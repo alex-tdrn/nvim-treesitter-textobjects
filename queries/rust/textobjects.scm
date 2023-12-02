@@ -5,6 +5,14 @@
   body: (block . "{" . (_) @_start @_end (_)? @_end . "}"
   (#make-range! "function.inner" @_start @_end)))
 
+(closure_expression)@function.outer
+
+(closure_expression body:(_)@function.inner)
+
+(closure_expression
+  body: (block . "{" . (_) @_start @_end (_)? @_end . "}"
+ (#make-range! "function.inner" @_start @_end)))
+
 ;; quantifies as class(es)
 (struct_item) @class.outer
 (struct_item
